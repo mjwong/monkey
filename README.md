@@ -46,7 +46,8 @@ me["name"] 	// ==> "Michael"
 
 Binding functions:
 
-Function literals as expression:
+Function literals as expression, i.e. function literals can be used
+in every place where any other expression is valid:
 
 ```
 let add = fn(a, b) { return a + b; };
@@ -94,8 +95,19 @@ let fibonacci = fn(x) {
 };
 ```
 
-Binging higher order functions:
+Function literal as the expression in a return statement inside another function literal:
+```
+fn() {
+	return fn(x, y) { return x > y; };
+}
+```
 
+Using a function literal as an argument when calling another function:
+```
+myFunc(x, y, fn(x, y) { return x > y; });
+```
+
+Binding higher order functions:
 ```
 let twice = fn(f, x) {
 	return f(f(x));
